@@ -3,6 +3,8 @@
   var BY_SLUG = {};
   var ALIAS = {
     clips: "vodka-bet_clips",
+    gallery: "vodka-bet_gallery",
+    pictures: "vodka-bet_gallery",
     about: "vodka-bet_about",
     stream: "vodka-bet_stream",
     tags: "vodka-bet_tags",
@@ -14,8 +16,10 @@
     "водка бет": "водка-бет",
     "водкабет зеркало": "водкабет-зеркало",
     "водка казино промокод": "водка-казино-промокод",
-    vodkabet: "vodka-bet",
-    vodkacasino: "vodka-casino",
+    "водка казино live ставки": "vodka-kazino-live-stavki",
+    "vodka casino скачать на пк": "vodka-casino-skachat-na-pk",
+    vodkabet: "vodkabet",
+    vodkacasino: "vodkacasino",
     "vdk-bet": "vdk.bet",
   };
 
@@ -58,6 +62,7 @@
       "vodka-bet_about": "О трансляции VDK.BET — сайт прямого эфира vodka_bet.",
       "vodka-bet_stream": "Прямой эфир vodka_bet на Twitch — VDK.BET.",
       "vodka-bet_clips": "Клипы vodka_bet на Twitch — карусель на VDK.BET.",
+      "vodka-bet_gallery": "Картинки vodka_bet на Twitch — карусель на VDK.BET.",
       "vodka-bet_tags": "Теги сайта VDK.BET.",
       "vodka-bet_comments": "Отзыв и комментарии VDK.BET / vodka casino.",
       "vdk.bet": "VDK.BET — официальный сайт прямого эфира vodka_bet.",
@@ -68,6 +73,12 @@
       "водка-бет": "водка бет — клип / тег на VDK.BET.",
       "водкабет-зеркало": "водкабет зеркало — клип / тег на VDK.BET.",
       "водка-казино-промокод": "водка казино промокод — клип / тег на VDK.BET.",
+      vodkacasino: "vodkacasino — картинка / тег на VDK.BET.",
+      водкаказино: "водкаказино — картинка / тег на VDK.BET.",
+      vodkabet: "vodkabet — картинка / тег на VDK.BET.",
+      водкабет: "водкабет — картинка / тег на VDK.BET.",
+      "vodka-kazino-live-stavki": "водка казино live ставки — картинка / тег на VDK.BET.",
+      "vodka-casino-skachat-na-pk": "vodka casino скачать на пк — картинка / тег на VDK.BET.",
     };
     if (leads[id]) return leads[id];
     return name + " — прямой эфир vodka_bet на VDK.BET.";
@@ -156,9 +167,9 @@
     setProp("og:title", title);
     setProp("og:description", desc);
     setProp("og:url", "https://vdk.bet/index.html?id=" + encodeURIComponent(id));
-    var m = String(id).match(/_(about|stream|clips|tags|comments)$/);
+    var m = String(id).match(/_(about|stream|clips|gallery|tags|comments)$/);
     var sectionKey = m ? m[1] : "";
-    var map = { about: "about", stream: "stream", clips: "clips", tags: "tags", comments: "otzyv" };
+    var map = { about: "about", stream: "stream", clips: "clips", gallery: "gallery", tags: "tags", comments: "otzyv" };
     var sectionId = map[sectionKey] || "";
     if (!sectionId && document.getElementById(id)) sectionId = id;
     if (sectionId) {
@@ -171,6 +182,7 @@
       }
     }
     if (w.VDK_PLAY_CLIP_BY_ID) w.VDK_PLAY_CLIP_BY_ID(id);
+    if (w.VDK_SHOW_PIC_BY_ID) w.VDK_SHOW_PIC_BY_ID(id);
   }
 
   function render() {
